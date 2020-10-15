@@ -1,0 +1,77 @@
+<section class="center-vertical">
+	<h1><%= current_user.name %>の投稿</h1>
+		<% if !@posts.nil? %> <%#nilならtrue%>
+			<% @posts.each do |post| %>
+				<div class="post center-vertical" width="125" height="125">
+					<p><img src="<%= post.user.icon_url %>"  alt="user_image" width="40" height="40"></p>
+					<p>チャレンジ内容:<%= post.body %></p><br>
+					<div>
+					<% if !post.comments.nil? %>
+							<% post.comments.each do |comment|%>
+								<img src="<%= comment.user.icon_url %>" alt="user_image" width="40" height="40">
+								<p>氏名:<%= comment.user.name %></p>
+								<p>コメント:<%= comment.content %></p>
+							<% end %>
+						<% end %>
+						</div>
+					<% if !post.tags.nil? %>
+						<% post.tags.each do |tag|%>
+							<p>チャレンジタグ:#<%= tag.tag_name %></p><br>
+						<% end %>
+					<% end %>
+					<div>
+					<p>いいねしたユーザー<br>
+					<% if !post.likesusers.nil? %>
+						<form action="/myfavorite/<%= post.id%>" method="get">
+							<% post.likesusers.each do |like|%>
+									<img src="<%= like.icon_url %>" alt="user_image" width="40" height="40">
+							<% end %>
+							<input type="hidden" value="<%= post.id %>">
+							<input type="submit" value="いいね一覧を見る">
+						</form>
+					<% else%>
+					  <p>いいねしたユーザーはいません</p>
+					<% end %>
+					</p>
+					</div>
+					<form action="/posts/<%= post.id %>/delete" method="post">
+						<input type="submit" value="削除">
+					</form>
+					<form action="/posts/<%= post.id %>/edit">
+						<input type="submit" value="編集">
+					</form>
+				</div>
+						<div>
+						</div>
+			<% end %>
+		<% else %>
+				<p>投稿がありません</p>
+		<% end %>
+</section>
+
+<section class="center-vertical">
+	<h1><%= current_user.name %>のイイねした投稿</h1>
+			<% if !current_user.likesposts.nil? %>
+				<% current_user.likesposts.each do |like|%>
+					<div class="post center-vertical">
+						<p><img src="<%= like.user.icon_url %>"  alt="user_image" width="40" height="40"></p>
+						<p>投稿者: <%= like.user.name %><br></p>
+						<p>チャレンジ内容:#<%= like.body %></p><br>
+					</div>
+				<% end %>
+			<% else %>
+				<p>イイねした投稿はありません</p>
+			<% end %>
+			<%# TODO: ここで分岐 %>
+</section>
+
+
+<%#
+<section class="center-vertical">
+	<h1>〇〇 のフォロー</h1>
+	<a href="#">フォロー解除</a><br>
+</section>
+
+<section class="center-vertical">
+	<h1>〇〇のフォロワー</h1>
+</section>%>

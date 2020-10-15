@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>CHALLENGE SNS</title>
+	<link rel="stylesheet" href="/assets/css/index.css">
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<body>
+<nav class="center-hrizontal">
+	<% if !current_user.nil? %>
+	<div>
+		<a href="/">CHALLENGE SNS!!!</a>
+		<a href="/my_posts"><img src="<%= current_user.icon_url %>" alt="user_image" width="40" height="40"></a>
+		<a href="/new_post">新規投稿作成</a>
+		<a href="/search">search</a>
+		<%# =を忘れない！！＝がないと反映されないよ〜〜〜 %>
+		<a href="/signout">logout</a>
+		<%# <form action="/search" method="post">
+			<input type="string" name="tag_name" placeholder="タグ名">
+			<input type="submit" value="検索">
+		</form> %>
+	</div>
+		<div class="accbox">
+			<!--ラベル1-->
+				<label for="label1">検索</label>
+				<input type="checkbox" id="label1" class="cssacc">
+				<ul class="accshow">
+						<% @tags.each do |tag|%>
+							<li>
+								<a href="/search/<%= tag.id %>"><%= tag.tag_name%></a>
+							</li>
+						<% end %>
+				</ul>
+				<!--//ラベル1-->
+		</div>
+	<% else %>
+		<a href="/">CHALLENGE SNS!!!</a>
+		<a href="/signup">新規登録</a>
+		<a href="/signin">ログイン</a>
+	<% end %>
+</nav>
+<main>
+
+<%= yield %>
+
+</main>
+</body>
+</html>

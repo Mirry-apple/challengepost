@@ -1,0 +1,10 @@
+<section class="center-vertical">
+    <h1><%= current_user.name %>の新規投稿フォーム</h1>
+    <div>
+      <form action="/posts" method="post">
+        <input type="text" name="body" placeholder="あなたが熱量を注いでいるものはなんですか？"><br>
+        <input type="string" name="tag_name" placeholder="タグを入力"><br>
+        <input type="submit" value="投稿">
+      </form>
+    </div>
+</section>
