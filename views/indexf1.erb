@@ -4,21 +4,16 @@
 
 <section class="center-vertical view">
 	<h1>Post</h1>
-	<div class="grid cards-container ">
+	<div class="grid">
 		<% if !@posts.nil? %>
 			<% @posts.each do |post| %>
-				<div class="card card-one post">
+				<div class="post center-vertical">
 					<div>
-						<header>
-							<div class="avatar">
-							<p><img src="<%= post.user.icon_url %>"  alt="user_image" width="140" height="140" ></p></div>
-						</header>
-						<h3 style="font-size: 20px;"><%= post.user.name %></h3>
+						<p><img src="<%= post.user.icon_url %>"  alt="user_image" width="140" height="140" class="rounded-circle"></p>
+						<p style="font-size: 20px;"><%= post.user.name %></p>
 					</div>
-					<div class="desc">
 					<p>チャレンジ内容:<%= post.body %></p>
-					</div>
-					<div class="desc">
+					<div>
 						<% if !post.tags.nil? %>
 							<% post.tags.each do |tag|%>
 								<p>チャレンジタグ:#<%= tag.tag_name %></p><br>
