@@ -7,8 +7,14 @@
      border-radius: 50%!important;
  }
  
+ .clearfix::after {
+     content: "";
+     display: block;
+     clear: both;
+ }
+ 
  .accbox {
-     margin: 2em 0;
+     /* margin: 2em 0; */
      padding: 0;
      max-width: 400px;
  }
@@ -17,15 +23,20 @@
      display: block;
      margin: 1.5px 0;
      padding: 11px 12px;
-     color: #2f8fcf;
+     color: #fff;
      font-weight: bold;
-     background: #a4cbf3;
      cursor: pointer;
      transition: all 0.5s;
+     background-color: #F3A776;
+     border: solid 1px rgb(252, 248, 248);
+     border-radius: 5px;
+     /* padding-left: 20px; */
+     height: 43px;
+     width: 165px;
  }
  
  .accbox label:hover {
-     background: #85baef;
+     background: #F3A776;
  }
  
  .accbox input {
@@ -43,21 +54,38 @@
  .cssacc:checked+.accshow {
      height: auto;
      padding: 5px;
-     background: #eaeaea;
+     background: #d88660;
      opacity: 1;
  }
  
  nav {
      height: 70px;
      width: 100%;
-     background-color: #C54C64;
+     /* background-color: #C54C64; */
+     display: table;
+     margin: 0 auto;
+     padding: 0;
+     /* width: 80%; */
+     text-align: center;
+     /* background-image: url("/assets/img/ch1.jpg"); */
  }
  
  nav a {
-     font-family: 'Righteous', cursive;
+     font-family: Rajdhani, YuGothic, 游ゴシック, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+     font-weight: 900;
      color: white;
      text-decoration: none;
      margin-left: 15px;
+     display: table-cell;
+     min-width: 80px;
+ }
+ 
+ nav a:hover {
+     color: white;
+     text-decoration: none;
+     margin-left: 15px;
+     color: #504DC4;
+     border-bottom: 3px solid #504DC4;
  }
  
  nav img {
@@ -66,18 +94,20 @@
  }
  
  .first-view {
-     height: 450px;
+     height: 755px;
      width: 100%;
-     padding-top: 170px;
-     /* background-image: url("/assets/img/mic.jpg"); */
      background-color: #F3A776;
+     background-image: url("/assets/img/ch1.jpg");
      background-size: cover;
      background-repeat: no-repeat;
+     margin-top: -80px;
  }
  
  .first-view h1 {
-     font-family: 'Righteous', cursive;
+     font-family: Rajdhani, YuGothic, 游ゴシック, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
      color: white;
+     font-weight: 900;
+     font-size: 150px;
  }
  
  .login_button {
@@ -98,31 +128,84 @@
      background-color: #7F9259;
      float: left;
  }
- /* .grid { */
- /* padding: 5px;
+ 
+ .likeuser {
+     font-family: Rajdhani, YuGothic, 游ゴシック, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+     font-weight: 600;
+     color: white;
+ }
+ 
+ .likepost {
+     margin: 20px;
+     padding: 10px;
+     width: 400px;
+     /* margin: 2%; */
+     border-radius: 5px;
+     word-break: break-all;
+     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+     background-color: #7F9259;
+     float: left;
+ }
+ 
+ .grid {
+     /* padding: 5px;
         -webkit-column-break-inside: avoid;
         page-break-inside: avoid;
         break-inside: avoid; */
- /* width: 400px; */
- /* grid-template-rows: 150px 100px 50px 50px auto; */
- /* display: grid;
+     /* width: 400px; */
+     /* grid-template-rows: 150px 100px 50px 50px auto; */
+     /* display: grid;
         grid-gap: 1rem;
         grid-template-columns: 2fr 2fr 2fr 2fr;
         grid-template-rows: auto; */
- /* ここから使ってた */
- /* display: flex;
+     /* ここから使ってた */
+     display: flex;
      flex-wrap: wrap;
      text-align: center;
      margin-left: 17%;
-     grid-template-rows: auto; */
- /* } */
+     grid-template-rows: auto;
+ }
  
  .view {
-     background-color: #EFE6B9;
+     background-image: url("/assets/img/tama.jpg");
+     /* background-color: #EFE6B9; */
+     margin-top: -80px;
+     background-size: cover;
+ }
+ 
+ .view1 {
+     background-image: url("/assets/img/tama.jpg");
+     /* background-color: #EFE6B9; */
+     margin-top: -80px;
+     background-size: cover;
+     background-repeat: repeat-y;
+     background-attachment: fixed;
+ }
+ 
+ .view2 {
+     background-image: url("/assets/img/tama.jpg");
+     /* background-color: #EFE6B9; */
+     margin-top: -150px;
+     background-size: cover;
+     background-attachment: fixed;
+ }
+ 
+ .haba {
+     margin-top: 80px;
+ }
+ 
+ .haba2 {
+     padding-top: 250px;
+     /* padding-left: 220px; */
  }
  
  .view h1 {
-     font-family: 'Allura Regular', cursive;
+     /* font-family: 'Allura Regular', cursive;
+     color: #504DC4; */
+     font-family: Rajdhani, YuGothic, 游ゴシック, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+     color: white;
+     font-weight: 900;
+     margin-top: 40px;
  }
  
  .center-vertical {
@@ -134,19 +217,108 @@
  .center-hrizontal {
      display: flex;
      justify-content: center;
-     align-items: center;
+     /* align-items: center; */
      flex-wrap: wrap;
  }
  
- input[type="submit"] {
-     border: 1px solid #3c7fb1;
-     /* 枠線 */
-     border-radius: 0.3em;
-     /* 角丸 */
+ .sign input[type="submit"] {
+     color: white;
+     background-color: #F3A776;
+     border: solid 1px rgb(70, 69, 69);
+     border-radius: 25px;
+     /* padding-left: 20px; */
+     height: 43px;
+     width: 165px;
+ }
+ 
+ .like input[type="submit"] {
+     color: white;
+     background-color: #f37676;
+     border: solid 1px rgb(70, 69, 69);
+     border-radius: 25px;
+     /* padding-left: 20px; */
+     height: 43px;
+     width: 165px;
+ }
+ 
+ .alllike input[type="submit"] {
+     color: #F3A776;
+     background-color: #fff;
+     border: solid 0px rgb(70, 69, 69);
+     /* border-radius: 25px; */
+     /* padding-left: 20px; */
+     height: 43px;
+     width: 165px;
+ }
+ 
+ .toukou input[type="submit"] {
+     color: #fff;
+     background-color: #F3A776;
+     border: solid 1px rgb(70, 69, 69);
+     /* float: right; */
+ }
+ 
+ .toukou input[type="submit"]:hover {
+     color: #fff;
+     background: #F3A776;
+ }
+ 
+ .toukou2 input[type="submit"] {
+     color: white;
+     background-color: #F3A776;
+     border: solid 1px rgb(70, 69, 69);
+     border-radius: 25px;
+     /* padding-left: 20px; */
+     height: 43px;
+     width: 165px;
+ }
+ 
+ .delete input[type="submit"] {
+     -webkit-transform: skew(-15deg);
+     transform: skew(-15deg);
+     color: #fff;
+     border-radius: 0;
+     padding: 0 2rem;
+     border: solid 1px rgb(70, 69, 69);
+     background-image: -webkit-gradient(linear, left top, right top, from(#7F9259), to(#7F9259));
+     background-image: -webkit-linear-gradient(left, #7F9259 0%, #7F9259 100%);
+     background-image: linear-gradient(90deg, #7F9259 0%, #7F9259 100%);
+     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+     box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+ }
+ 
+ .delete input[type="submit"]:hover {
+     -webkit-transform: skew(0);
+     transform: skew(0);
+     color: #fff;
+     -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+     box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+ }
+ 
+ .edit input[type="submit"] {
+     -webkit-transform: skew(-15deg);
+     transform: skew(-15deg);
+     color: #fff;
+     padding: 0 2rem;
+     border-radius: 0;
+     border: solid 1px rgb(70, 69, 69);
+     background-image: -webkit-gradient(linear, left top, right top, from(#7F9259), to(#7F9259));
+     background-image: -webkit-linear-gradient(left, #7F9259 0%, #7F9259 100%);
+     background-image: linear-gradient(90deg, #7F9259 0%, #7F9259 100%);
+     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+     box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+ }
+ 
+ .edit input[type="submit"]:hover {
+     -webkit-transform: skew(0);
+     transform: skew(0);
+     color: #fff;
+     -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
+     box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
  }
  
  .cards-container {
-     width: 793px;
+     width: 80%;
      max-width: 100%;
      margin: 2rem auto;
  }
@@ -161,18 +333,20 @@
      width: 300px;
      background: #fff;
      box-shadow: 0 10px 7px -5px rgba(0, 0, 0, 0.4);
+     word-break: break-all;
  }
  
  .card {
      float: left;
-     margin: 3rem;
+     margin: 4.5rem;
+     width: 400px;
  }
  
  .card-one header {
      position: relative;
      width: 100%;
      height: 60px;
-     background-color: #c8c;
+     background-color: #7F9259;
  }
  
  .card-one header::before {
@@ -232,6 +406,7 @@
      position: relative;
      margin: 80px 0 30px;
      text-align: center;
+     color: #5d5992;
  }
  
  .card-one h3::after {
@@ -250,4 +425,48 @@
      text-align: center;
      line-height: 1.5;
      color: #777;
+ }
+ 
+ .cp_iptxt {
+     position: relative;
+     width: 27.33%;
+     margin: 40px 3%;
+ }
+ 
+ .cp_iptxt input {
+     font: 15px/24px sans-serif;
+     box-sizing: border-box;
+     width: 100%;
+     padding: 0.3em;
+     padding-left: 40px;
+     letter-spacing: 1px;
+     border: 0;
+ }
+ 
+ .cp_iptxt input:focus {
+     outline: none;
+ }
+ 
+ .cp_iptxt input:focus::after {
+     outline: none;
+ }
+ 
+ .cp_iptxt i {
+     position: absolute;
+     top: 0;
+     left: 0;
+     padding: 9px 5px;
+     transition: 0.3s;
+     color: #aaaaaa;
+ }
+ 
+ .cp_iptxt::after {
+     display: block;
+     width: 100%;
+     height: 4px;
+     margin-top: -1px;
+     content: '';
+     border-width: 0 1px 1px 1px;
+     border-style: solid;
+     border-color: #F3A776;
  }

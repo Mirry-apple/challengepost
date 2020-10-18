@@ -1,25 +1,45 @@
-<section class="center-vertical">
-	<h1><%= current_user.name %>の投稿</h1>
-		<% if !@posts.nil? %> <%#nilならtrue%>
+<head>
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<section class="center-vertical view1" style="padding-top: 80px;">
+
+	<h1 style="text-align: center; color: #fff;"><%= current_user.name %>'s post</h1>
+	<div class="grid cards-container ">
+		<% if !@posts.nil? %>
 			<% @posts.each do |post| %>
-				<div class="post center-vertical" width="125" height="125">
-					<p><img src="<%= post.user.icon_url %>"  alt="user_image" width="40" height="40"></p>
-					<p>チャレンジ内容:<%= post.body %></p><br>
+				<div class="card card-one">
 					<div>
-					<% if !post.comments.nil? %>
-							<% post.comments.each do |comment|%>
-								<img src="<%= comment.user.icon_url %>" alt="user_image" width="40" height="40">
-								<p>氏名:<%= comment.user.name %></p>
-								<p>コメント:<%= comment.content %></p>
+						<header>
+							<div class="avatar">
+							<p><img src="<%= post.user.icon_url %>"  alt="user_image" width="140" height="140" ></p></div>
+						</header>
+						<h3 style="font-size: 20px;"><%= post.user.name %></h3>
+					</div>
+					<div class="desc">
+					<p><%= post.body %></p>
+					</div>
+					<div class="desc">
+						<% if !post.tags.nil? %>
+							<% post.tags.each do |tag|%>
+								<p>#<%= tag.tag_name %></p><br>
 							<% end %>
 						<% end %>
+						<div>
+							<% if !post.comments.nil? %>
+								<% post.comments.each do |comment|%>
+								<div class="clearfix">
+									<div style="float: left;margin-left: 20px;">
+									<img src="<%= comment.user.icon_url %>" alt="user_image" width="40" height="40" >
+									<p><%= comment.user.name %></p>
+									</div>
+									<p><%= comment.content %></p>
+								</div>
+								<% end %>
+							<% end %>
 						</div>
-					<% if !post.tags.nil? %>
-						<% post.tags.each do |tag|%>
-							<p>チャレンジタグ:#<%= tag.tag_name %></p><br>
-						<% end %>
-					<% end %>
-					<div>
+					</div>
+					<div class="desc">
 					<p>いいねしたユーザー<br>
 					<% if !post.likesusers.nil? %>
 						<form action="/myfavorite/<%= post.id%>" method="get">
@@ -27,51 +47,67 @@
 									<img src="<%= like.icon_url %>" alt="user_image" width="40" height="40">
 							<% end %>
 							<input type="hidden" value="<%= post.id %>">
-							<input type="submit" value="いいね一覧を見る">
+							<div class="alllike">
+							<input type="submit" value="♡一覧を見る>">
+							</div>
 						</form>
 					<% else%>
 					  <p>いいねしたユーザーはいません</p>
 					<% end %>
 					</p>
 					</div>
-					<form action="/posts/<%= post.id %>/delete" method="post">
+					<div>
+					<form action="/posts/<%= post.id %>/delete" method="post"  class="desc" style="float: left; margin-left: 2rem;">
+						<div class="delete">
 						<input type="submit" value="削除">
+						</div>
 					</form>
-					<form action="/posts/<%= post.id %>/edit">
+					<form action="/posts/<%= post.id %>/edit"  class="desc clearfix">
+					<div class="edit">
 						<input type="submit" value="編集">
+					</div>
 					</form>
 				</div>
-						<div>
-						</div>
+				</div>
 			<% end %>
 		<% else %>
-				<p>投稿がありません</p>
-		<% end %>
-</section>
-
-<section class="center-vertical">
-	<h1><%= current_user.name %>のイイねした投稿</h1>
-			<% if !current_user.likesposts.nil? %>
-				<% current_user.likesposts.each do |like|%>
-					<div class="post center-vertical">
-						<p><img src="<%= like.user.icon_url %>"  alt="user_image" width="40" height="40"></p>
-						<p>投稿者: <%= like.user.name %><br></p>
-						<p>チャレンジ内容:#<%= like.body %></p><br>
-					</div>
-				<% end %>
-			<% else %>
-				<p>イイねした投稿はありません</p>
-			<% end %>
 			<%# TODO: ここで分岐 %>
+			<p>投稿がありません</p>
+		<%end%>
+	</div>
+
+	<h1 style="text-align: center; color: #fff;"><%= current_user.name %>'s like</h1>
+	<div class="grid cards-container">
+		<% if !current_user.likesposts.nil? %>
+				<% current_user.likesposts.each do |like|%>
+				<div class="card card-one">
+					<div>
+						<header>
+							<div class="avatar">
+							<p><img src="<%= like.user.icon_url %>"  alt="user_image" width="140" height="140" ></p></div>
+						</header>
+						<h3 style="font-size: 20px;"><%= like.user.name %></h3>
+					</div>
+					<div class="desc">
+					<p><%= like.body %></p>
+					</div>
+					<div class="desc">
+					<% if !like.tags.nil? %>
+							<% like.tags.each do |tag|%>
+								<p>#<%= tag.tag_name %></p><br>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
+		<% else %>
+			<%# TODO: ここで分岐 %>
+			<p>投稿がありません</p>
+		<%end%>
+		</div>
+
 </section>
 
+<section class="center-vertical view">
 
-<%#
-<section class="center-vertical">
-	<h1>〇〇 のフォロー</h1>
-	<a href="#">フォロー解除</a><br>
 </section>
-
-<section class="center-vertical">
-	<h1>〇〇のフォロワー</h1>
-</section>%>

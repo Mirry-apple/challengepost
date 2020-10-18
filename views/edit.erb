@@ -1,9 +1,17 @@
-<section class="center-vertical">
+<head>
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<section class="center-vertical view" style="height: 800px;">
     <h1><%= current_user.name %>の投稿編集フォーム</h1>
     <div>
       <form action="/posts/<%= @post.id %>" method="post">
-        <input type="text" name="body" value="<%= @post.body %>" placeholder="あなたが熱量を注いでいるものはなんですか？"><br>
-        <input type="string" name="tag_name" value="<%= @tag.tag_name %>" placeholder="タグを入力"><br>
+        <input type="text" name="body" value="<%= @post.body %>" placeholder="あなたがチャレンジしていることを聞かせてください！"
+        style="width: 500px;
+        height: 300px;
+        margin: 1rem 0;"><br>
+        <input type="string" name="tag_name" value="<%= @tag.tag_name %>" placeholder="タグを入力"
+        style="margin: 1rem 0;"><br>
         <input type="submit" value="投稿">
       </form>
     </div>

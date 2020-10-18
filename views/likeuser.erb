@@ -1,12 +1,20 @@
-<div>
-   <p>いいねした人</p>
+<head>
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<section class="view2" style="min-height: 800px;">
+<div class="haba2">
+   <p class="likeuser">いいねした人</p>
       <% if !@users.nil? %>
         <% @users.each do |user|%>
-          <div class="post center-vertical" width="125" height="125">
-            <p><%= user.name %></p> <br>
-            <p><img src="<%= user.icon_url %>"  alt="user_image" width="40" height="40"></p>
-            <p><%= user.description %></p> <br>
+          <div class="clearfix likepost" style="width: 400px; margin: 0 3rem;">
+            <div style="float: left; width: 200px;">
+									<img src="<%= user.icon_url %>" alt="user_image" width="40" height="40" >
+									<p><%= user.name %></p>
+						  </div>
+									<p><%= user.description %></p>
           </div>
         <% end %>
       <% end %>
 </div>
+</section>

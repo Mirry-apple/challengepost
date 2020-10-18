@@ -1,16 +1,30 @@
-<div>
+<head>
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<section class="view2" style="min-height: 800px;">
+<div class="haba2">
   <form action="/signup" method="post" enctype="multipart/form-data">
     <div>
-      <div>
-        <input name="name" placeholder="名前を入力"><br>
-        <input name="password" type="password" placeholder="パスワードを入力"><br>
-        <input name="password_confirmation"  type="password" placeholder="パスワードをもう一度入力"><br>
-        <input name="description" placeholder="自己紹介"><br>
-        <input name="file" type="file" placeholder="画像を選択">
+      <div style="padding-left: 500px;">
+        <div class="cp_iptxt">
+          <input name="name" placeholder="名前を入力"><br>
+        </div>
+        <div class="cp_iptxt">
+          <input name="password" type="password" placeholder="パスワードを入力"><br>
+        </div>
+        <div class="cp_iptxt">
+          <input name="password_confirmation"  type="password" placeholder="パスワードをもう一度入力"><br>
+        </div>
+        <div class="cp_iptxt">
+          <input name="description" placeholder="自己紹介"><br>
+        </div>
+        <input name="file" type="file" placeholder="画像を選択" style="padding-left: -500px;">
       </div>
-      <div>
+      <div class="sign" style="text-align: center;">
         <input type="submit" value="新規登録">
       </div>
     </div>
   </form>
 </div>
+</section>

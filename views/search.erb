@@ -1,29 +1,54 @@
-<section class="center-vertical">
+<head>
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<section class="center-vertical view" style="min-height: 800px;">
 	<h1><%#=tag.tag_name%>検索結果</h1>
+	<div class="grid cards-container ">
 		<% if !@post.nil? %>
 			<% @tag.tagpost.each do |post| %>
 			<%#= post.tag.try(:tag_name) %>
-				<div class="post center-vertical">
-					<p><img src="<%= post.user.icon_url %>"  alt="user_image" width="40" height="40"></p>
-					<p>投稿者: <%= post.user.name %></p><br>
-					<p>チャレンジ内容:<%= post.body %></p><br>
+				<div class="card card-one">
 					<div>
+						<header>
+							<div class="avatar">
+							<p><img src="<%= post.user.icon_url %>"  alt="user_image" width="140" height="140" ></p></div>
+						</header>
+						<h3 style="font-size: 20px;"><%= post.user.name %></h3>
+					</div>
+					<div class="desc">
+					<p><%= post.body %></p>
+					</div>
+					<div class="desc">
 						<% if !post.tags.nil? %>
 							<% post.tags.each do |tag|%>
-								<p>チャレンジタグ:#<%= tag.tag_name %></p><br>
+								<p>#<%= tag.tag_name %></p><br>
 							<% end %>
 						<% end %>
 						<div>
 							<% if !post.comments.nil? %>
 								<% post.comments.each do |comment|%>
-									<img src="<%= comment.user.icon_url %>" alt="user_image" width="40" height="40">
-									<p>氏名:<%= comment.user.name %></p>
-									<p>コメント:<%= comment.content %></p>
+								<div class="clearfix">
+									<div style="float: left;margin-left: 20px;">
+									<img src="<%= comment.user.icon_url %>" alt="user_image" width="40" height="40" >
+									<p><%= comment.user.name %></p>
+									</div>
+									<p><%= comment.content %></p>
+								</div>
 								<% end %>
 							<% end %>
 						</div>
 					</div>
-					<div>
+					<% if !current_user.nil? %>
+						<div class="desc">
+							<form action="/comment" method="post">
+								<input type="string" name="content" placeholder="コメント">
+								<input type="hidden" name="post_id" value="<%= post.id %>">
+								<input type="submit" value="投稿">
+							</form>
+						</div>
+					<% end %>
+					<div class="desc">
 					<p>いいねしたユーザー<br>
 					<% if !post.likesusers.nil? %>
 						<form action="/myfavorite/<%= post.id%>" method="get">
@@ -31,7 +56,7 @@
 									<img src="<%= like.icon_url %>" alt="user_image" width="40" height="40">
 							<% end %>
 							<input type="hidden" value="<%= post.id %>">
-							<input type="submit" value="いいね一覧を見る">
+							<input type="submit" value="❤︎一覧を見る">
 						</form>
 					<% else%>
 					  <p>いいねしたユーザーはいません</p>
@@ -40,16 +65,9 @@
 					</div>
 					<%# unless post.like.liked %>
 					<% if !current_user.nil? %>
-						<div>
-							<form action="/comment" method="post">
-								<input type="string" name="content" placeholder="コメント">
-								<input type="hidden" name="post_id" value="<%= post.id %>">
-								<input type="submit" value="投稿">
-							</form>
-						</div>
-						<div>
+						<div class="desc">
 							<form action="/like" method="post">
-								<input type="submit" value="いいねする">
+								<input type="submit" value="❤︎♡">
 								<input type="hidden" value="<%= post.id %>" name="post_id">
 							</form>
 						</div>
@@ -61,4 +79,5 @@
 			<%# TODO: ここで分岐 %>
 			<p>検索結果がありません</p>
 		<%end%>
+	</div>
 </section>

@@ -1,13 +1,21 @@
+<head>
+  <link rel="shortcut icon" href="favicon.ico">
+</head>
+
 <section class="first-view center-vertical">
-	<h1>CHALLENGE SNS!!!</h1>
+	<h1 style="
+    margin-left: -300px; margin-top: 280px;">CHALLENGE</h1>
+	<h1 style="
+     margin-top: -25px;
+    margin-left: 850px;">POST</h1>
 </section>
 
-<section class="center-vertical view">
-	<h1>Post</h1>
+<section class="center-vertical view1">
+	<h1 style="text-align: center; color: #fff;">Everyone Posts</h1>
 	<div class="grid cards-container ">
 		<% if !@posts.nil? %>
 			<% @posts.each do |post| %>
-				<div class="card card-one post">
+				<div class="card card-one clearfix">
 					<div>
 						<header>
 							<div class="avatar">
@@ -16,25 +24,40 @@
 						<h3 style="font-size: 20px;"><%= post.user.name %></h3>
 					</div>
 					<div class="desc">
-					<p>チャレンジ内容:<%= post.body %></p>
+					<p style="color: #000;"><%= post.body %></p>
 					</div>
 					<div class="desc">
 						<% if !post.tags.nil? %>
 							<% post.tags.each do |tag|%>
-								<p>チャレンジタグ:#<%= tag.tag_name %></p><br>
+								<p>#<%= tag.tag_name %></p><br>
 							<% end %>
 						<% end %>
 						<div>
 							<% if !post.comments.nil? %>
 								<% post.comments.each do |comment|%>
-									<img src="<%= comment.user.icon_url %>" alt="user_image" width="40" height="40" style="float: left;">
-									<p>氏名:<%= comment.user.name %></p>
-									<p>コメント:<%= comment.content %></p>
+								<div class="clearfix" style=" margin: 0 3rem;">
+									<div style="float: left;">
+									<img src="<%= comment.user.icon_url %>" alt="user_image" width="40" height="40" >
+									<p><%= comment.user.name %></p>
+									</div>
+									<p><%= comment.content %></p>
+								</div>
 								<% end %>
 							<% end %>
 						</div>
 					</div>
-					<div>
+					<% if !current_user.nil? %>
+						<div class="desc">
+							<form action="/comment" method="post">
+								<div class="toukou">
+								<input type="string" name="content" placeholder="コメント" style="padding: 3px;">
+								<input type="hidden" name="post_id" value="<%= post.id %>">
+								<input type="submit" value="投稿" style="padding: 3px;">
+								</div>
+							</form>
+						</div>
+					<% end %>
+					<div class="desc">
 					<p>いいねしたユーザー<br>
 					<% if !post.likesusers.nil? %>
 						<form action="/myfavorite/<%= post.id%>" method="get">
@@ -42,7 +65,9 @@
 									<img src="<%= like.icon_url %>" alt="user_image" width="40" height="40">
 							<% end %>
 							<input type="hidden" value="<%= post.id %>">
-							<input type="submit" value="❤︎一覧を見る">
+							<div class="alllike">
+							<input type="submit" value="♡一覧を見る>"><i class="fas fa-angle-right fa-position-right"></i>
+							</div>
 						</form>
 					<% else%>
 					  <p>いいねしたユーザーはいません</p>
@@ -51,16 +76,11 @@
 					</div>
 					<%# unless post.like.liked %>
 					<% if !current_user.nil? %>
-						<div>
-							<form action="/comment" method="post">
-								<input type="string" name="content" placeholder="コメント">
-								<input type="hidden" name="post_id" value="<%= post.id %>">
-								<input type="submit" value="投稿">
-							</form>
-						</div>
-						<div>
+						<div class="desc like">
 							<form action="/like" method="post">
-								<input type="submit" value="いいねする">
+								<div class="like">
+								<input type="submit" value="♡">
+								</div>
 								<input type="hidden" value="<%= post.id %>" name="post_id">
 							</form>
 						</div>
