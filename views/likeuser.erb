@@ -4,10 +4,10 @@
 
 <section class="view2" style="min-height: 800px;">
 <div class="haba2">
-   <p class="likeuser">いいねした人</p>
+   <h1 class="likeuser">いいねした人</h1>
       <% if !@users.nil? %>
         <% @users.each do |user|%>
-          <div class="clearfix likepost" style="width: 400px; margin: 0 3rem;">
+          <div class="clearfix likepost" style="width: 400px; margin: 0 2rem 0 10rem;">
             <div style="float: left; width: 200px;">
 									<img src="<%= user.icon_url %>" alt="user_image" width="40" height="40" >
 									<p><%= user.name %></p>
